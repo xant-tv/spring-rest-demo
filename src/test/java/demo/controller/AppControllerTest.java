@@ -1,6 +1,6 @@
 package demo.controller;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
-import demo.app.NumberCruncher;
 import demo.rest.InputTemplate;
 import demo.rest.OutputTemplate;
 
@@ -45,20 +44,14 @@ public class AppControllerTest {
     }
 
     @Test // Functional return on route.
-    public void postInputCustom() throws Exception {
+    public void postInputActual() throws Exception {
 
-        // Randomly generate five numbers to create the input list.
-        List<Double> data = new ArrayList<Double>();
-        for(Integer i = 0; i < 5; i++) {
-            // Restrict numbers to integers between 0 and 9.
-            data.add(Double.valueOf(Math.random() % 10));
-        }
+        // Use the same six numbers to create the input list.
+        List<Double> data = Arrays.asList(2D, 4D, 7D, 8D, 11D, 16D);
         InputTemplate body = new InputTemplate(data);
 
-        // Use the normal application function to compute the result.
-        // This function has separate unit tests outside of this file.
-        NumberCruncher app = new NumberCruncher();
-        Double result = app.doCompute(data);
+        // Prepare expected result.
+        Double result = 21D;
         OutputTemplate expected = new OutputTemplate(result);
 
         // Hit the endpoint.
@@ -69,5 +62,8 @@ public class AppControllerTest {
 
     }
 
-    // Could write a bunch more test cases for expected failure conditions, etc.
+    // Could write a bunch more test cases for expected failure conditions:
+    //  - when incorrect or no body is provided (expect fail)
+    //  - may want a /ping or /health route in the future too
+
 }
