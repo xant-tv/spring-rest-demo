@@ -64,6 +64,7 @@ public class AppControllerTest {
 
     // Could write a bunch more test cases for expected failure conditions:
     //  - when incorrect or no body is provided (expect fail)
+    //  - when non-integer inputs are provided (expect fail)
     //  - may want a /ping or /health route in the future too
 
 }
