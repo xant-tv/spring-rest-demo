@@ -1,3 +1,13 @@
+# Miscellaneous
+*.log
+
+# Project
+.vscode/
+.settings/
+.project
+.classpath
+
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
